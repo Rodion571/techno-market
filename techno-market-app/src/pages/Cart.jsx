@@ -24,7 +24,7 @@ const Cart = () => {
         )}
       </div>
       <div className="cart-total">
-        <h3>Общая сумма: {total}₽</h3>
+        <h3>Общая сумма: {total}$</h3>
       </div>
       <button className="checkout-btn">Оформить заказ</button>
     </div>

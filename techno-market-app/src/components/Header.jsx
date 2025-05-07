@@ -1,16 +1,15 @@
 import React from 'react';
+import { useCart } from '../context/CartContext';
 
 const Header = () => {
+  const { cart } = useCart();
+  const itemCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+
   return (
-    <header>
+    <header className="App-header">
       <div className="logo">Techno-Market</div>
-      <nav>
-        <a href="/">Главная</a>
-        <a href="/catalog">Каталог</a>
-        <a href="/cart">Корзина</a>
-      </nav>
       <div className="cart-icon">
-        <span>0</span> {/* Тут будет количество товаров в корзине */}
+        🛒 <span className="cart-count">{itemCount}</span>
       </div>
     </header>
   );
