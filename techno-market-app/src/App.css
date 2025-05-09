@@ -182,7 +182,7 @@ footer {
 footer a {
   color: #ffe6d6;
   text-decoration: none;
-  margin: 0 8px;
+  margin: 5px;
 }
 
 footer a:hover {
@@ -200,25 +200,25 @@ footer a:hover {
 .social-icons a {
   color: white;
   font-size: 18px; /* Уменьшенный масштаб */
-  transition: color 0.3s;
+  transition: color 0.5s;
 }
 
 .social-icons a:hover {
-  color: #fffcb0; /* Светлее при наведении */
+  color: #1eac2e; /* Светлее при наведении */
 }
 
 
 
 /* Стили для боковой панели */
 .sidebar {
-  width: 250px;
+  width: 100px;
   height: 100%;
   background-color: #333;
   color: white;
   padding: 20px;
   position: fixed;
   top: 0;
-  left: -250px;
+  left: -110px;
   transition: left 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -296,4 +296,95 @@ footer a:hover {
   font-weight: 600;
   margin: 20px 0;
   color: #333;
+}
+
+
+.filter-panel select,
+.filter-panel input[type="range"] {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.filter-panel button {
+  padding: 6px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-panel button:hover {
+  background-color: #45a049;
+}
+.filter-panel-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-panel-inline select,
+.filter-panel-inline input[type="range"],
+.filter-panel-inline button {
+  font-size: 14px;
+  padding: 5px 8px;
+}
+
+.filter-panel-inline .price-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.selected-item-title {
+  margin-left: 50px; /* Смещает заголовок на 50px вправо */
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  gap: 10px; /* Интервал между кнопками */
+}
+
+.pagination button {
+  padding: 10px 15px;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #007bff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: scale(1.05); /* Легкий эффект увеличения */
+}
+
+.pagination button:active {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  color: #fff;
+}
+
+.pagination .active {
+  background-color: #007bff;
+  color: white;
+  pointer-events: none; /* Отключает активную кнопку */
+}
+
+.pagination .disabled {
+  opacity: 0.5;
+  pointer-events: none; /* Отключает кнопку */
+}
+.product-description {
+  border: 5px solid rgb(17, 254, 0);
+  border-radius: 10px;
 }

@@ -3,64 +3,83 @@ import React, { useState } from 'react';
 const FilterPanel = ({ onFilterChange, onResetFilters }) => {
   const [price, setPrice] = useState(10000);
   const [brand, setBrand] = useState('');
-  const [type, setType] = useState('');
+  const [category, setCategory] = useState('');
 
-  // Обработка изменения фильтров
+  const brandsByCategory = {
+    Ноутбуки: ["Acer", "Lenovo", "Apple", "HP", "Dell", "MSI", "Asus", "Huawei", "Xiaomi"],
+    Телевізори: ["Samsung", "LG", "Sony", "Hisense", "TCL", "Philips"],
+    Смартфони: ["Samsung", "Apple", "Xiaomi", "Huawei", "Realme", "Oppo", "OnePlus"],
+    Мікрохвильовки: ["Samsung", "LG", "Panasonic", "Miele", "Bosch"],
+    Станції: ["Anker", "Xiaomi", "Baseus", "UGREEN"],
+    Приставки: ["Sony", "Microsoft", "Nintendo"],
+    Розхідники: ["Epson", "Canon", "HP", "Brother"],
+    Холодильники: ["Samsung", "LG", "Bosch", "Siemens", "Electrolux"],
+    Духовки: ["Bosch", "Siemens", "Electrolux", "Whirlpool", "Gorenje"],
+    Пароочисники: ["Polti", "Bissell", "Shark", "Kitfort", "Thomas"]
+  };
+
   const handlePriceChange = (e) => {
-    const newPrice = e.target.value;
-    setPrice(newPrice);
-    onFilterChange({ price: newPrice, brand, type });
+    setPrice(e.target.value);
   };
 
   const handleBrandChange = (e) => {
-    const newBrand = e.target.value;
-    setBrand(newBrand);
-    onFilterChange({ price, brand: newBrand, type });
+    setBrand(e.target.value);
   };
 
-  const handleTypeChange = (e) => {
-    const newType = e.target.value;
-    setType(newType);
-    onFilterChange({ price, brand, type: newType });
+  const handleCategoryChange = (e) => {
+    const newCategory = e.target.value;
+    setCategory(newCategory);
+    setBrand(''); // Скидаємо бренд при зміні категорії
+  };
+
+  const handleApplyFilters = () => {
+    onFilterChange({ price, brand, category }); // Передаємо фільтри до батьківського компонента
+  };
+
+  const handleReset = () => {
+    setPrice(10000);
+    setBrand('');
+    setCategory('');
+    onResetFilters(); // Скидаємо фільтри в батьківському компоненті
   };
 
   return (
-    <div className="filter-panel">
-      <h3>Фильтры</h3>
-
-      {/* Фильтр по цене */}
-      <label>Цена:</label>
-      <input
-        type="range"
-        min="0"
-        max="10000"
-        value={price}
-        onChange={handlePriceChange}
-      />
-      <p>Максимальная цена: {price}₽</p>
-
-      {/* Фильтр по бренду */}
-      <label>Бренд:</label>
-      <select value={brand} onChange={handleBrandChange}>
-        <option value="">Выберите бренд</option>
-        <option value="Samsung">Samsung</option>
-        <option value="Apple">Apple</option>
-        <option value="Sony">Sony</option>
-        {/* Добавь другие бренды по необходимости */}
+    <div className="filter-panel-inline">
+      <select value={category} onChange={handleCategoryChange}>
+        <option value="">Тип</option>
+        <option value="Ноутбуки">Ноутбуки</option>
+        <option value="Телевізори">Телевізори</option>
+        <option value="Смартфони">Смартфони</option>
+        <option value="Мікрохвильовки">Мікрохвильовки</option>
+        <option value="Станції">Зарядні станції</option>
+        <option value="Приставки">Ігрові приставки</option>
+        <option value="Розхідники">Розхідники</option>
+        <option value="Холодильники">Холодильники</option>
+        <option value="Духовки">Духовки</option>
+        <option value="Пароочисники">Пароочисники</option>
       </select>
 
-      {/* Фильтр по типу */}
-      <label>Тип товара:</label>
-      <select value={type} onChange={handleTypeChange}>
-        <option value="">Выберите тип</option>
-        <option value="Телевизор">Телевизор</option>
-        <option value="Смартфон">Смартфон</option>
-        <option value="Ноутбук">Ноутбук</option>
-        {/* Добавь другие типы товаров по необходимости */}
+      <select value={brand} onChange={handleBrandChange} disabled={!category}>
+        <option value="">Бренд</option>
+        {category && brandsByCategory[category]?.map((b) => (
+          <option key={b} value={b}>{b}</option>
+        ))}
       </select>
 
-      {/* Кнопка для сброса фильтров */}
-      <button onClick={onResetFilters}>Сбросить фильтры</button>
+      <label className="price-label">
+        Ціна:
+        <input
+          type="range"
+          min="0"
+          max="100000"
+          value={price}
+          onChange={handlePriceChange}
+        />
+        <span>{price}$</span>
+      </label>
+
+      <button onClick={handleApplyFilters}>Застосувати</button>
+      <button onClick={handleReset}>Очистити</button>
     </div>
   );
 };
