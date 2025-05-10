@@ -2,28 +2,28 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const categories = [
-  { name: 'Ноутбук', image: '/images/laptop.jpg', type: 'Ноутбук' },
-  { name: 'Телевизор', image: '/images/tv.jpg', type: 'Телевизор' },
-  { name: 'Смартфон', image: '/images/smartphone.jpg', type: 'Смартфон' },
+  { name: 'Ноутбуки', image: '/images/laptop.jpg', category: 'Ноутбуки' },
+  { name: 'Телевізори', image: '/images/tv.jpg', category: 'Телевізори' },
+  { name: 'Смартфони', image: '/images/smartphone.jpg', category: 'Смартфони' },
 ];
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleMoreClick = (type) => {
-    navigate(`/catalog?type=${encodeURIComponent(type)}`);
+  const handleMoreClick = () => {
+    navigate('/catalog'); // Переходим на каталог без параметра категории в URL
   };
 
   return (
     <div className="home">
-      <h2 className="page-title">Популярные категории</h2>
+      <h2 className="page-title">Популярні категорії</h2>
       <div className="product-list">
         {categories.map((cat) => (
           <div key={cat.name} className="product-card">
             <img src={cat.image} alt={cat.name} className="product-card-image" />
             <h3 className="product-card-title">{cat.name}</h3>
-            <button onClick={() => handleMoreClick(cat.type)} className="product-card-button">
-              Подробнее
+            <button onClick={handleMoreClick} className="product-card-button">
+              Детальніше
             </button>
           </div>
         ))}

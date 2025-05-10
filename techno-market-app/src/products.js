@@ -183,7 +183,7 @@ const products = [
         id: 21,
         name: "Смартфон Samsung Galaxy A53 5G",
         price: 14999,
-        image: "https://www.samsung-online.com.ua/uploads/shop/products/main/c_038e3395d7a64914333130884b4a31ee.jpg",
+        image: "https://y.ua/pimg/568x568/56/a9/2438006.jpeg",
         category: "Телефони",
         brand: "Samsung",
         description: "6.5\" Super AMOLED, Exynos 1280, 6 ГБ RAM, 128 ГБ, 64 Мп."

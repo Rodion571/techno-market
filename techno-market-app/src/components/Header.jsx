@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Импортируем Link для перехода
 import { useCart } from '../context/CartContext';
 
 const Header = () => {
@@ -8,9 +9,9 @@ const Header = () => {
   return (
     <header className="App-header">
       <div className="logo">Techno-Market</div>
-      <div className="cart-icon">
+      <Link to="/cart" className="cart-icon">
         🛒 <span className="cart-count">{itemCount}</span>
-      </div>
+      </Link>
     </header>
   );
 };

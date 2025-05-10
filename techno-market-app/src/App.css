@@ -388,3 +388,148 @@ footer a:hover {
   border: 5px solid rgb(17, 254, 0);
   border-radius: 10px;
 }
+/* Контейнер корзины */
+.cart {
+  padding: 50px;
+}
+
+/* Элементы корзины */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Элемент товара в корзине */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #3c07b8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Левый блок с изображением и данными товара */
+.cart-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.cart-item-details {
+  font-size: 16px;
+}
+
+.cart-item-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-item-price {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Правый блок с описанием товара */
+.cart-item-right {
+  flex-grow: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  color: #03d21e;
+}
+
+/* Контейнер для кнопок изменения количества товара */
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: #218838;
+}
+
+.quantity-input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Кнопка удаления товара */
+.remove-item-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Общая сумма */
+.cart-total {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Кнопки действий */
+.cart-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continue-shopping-btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.continue-shopping-btn:hover {
+  background-color: #218838;
+}
+
+/* Кнопка оплаты */
+.pay-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.pay-button:hover {
+  background-color: #0056b3;
+}
