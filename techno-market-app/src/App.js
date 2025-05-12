@@ -1,19 +1,19 @@
-// App.js
-
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import Contact from './pages/Contact';
 import Catalog from './components/Catalog';
 import Sidebar from './components/Sidebar';
+import Checkout from './pages/Checkout'; // Импортируем компонент Checkout
 import { CartProvider } from './context/CartContext';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import products from './products';  // Импортируем массив продуктов из файла
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import products from './products';
 
 function App() {
   const onAddToCart = (product) => {
-    console.log('Добавлен в корзину:', product);
+    console.log('Додан до кошику:', product);
   };
 
   return (
@@ -27,6 +27,8 @@ function App() {
               <Route path="/" element={<Home products={products} onAddToCart={onAddToCart} />} />
               <Route path="/catalog" element={<Catalog products={products} onAddToCart={onAddToCart} />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/checkout" element={<Checkout />} /> {/* Добавляем маршрут для Checkout */}
             </Routes>
             <Footer />
           </div>

@@ -4,11 +4,12 @@ const FilterPanel = ({ onFilterChange, onResetFilters }) => {
   const [price, setPrice] = useState(10000);
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
+  const [search, setSearch] = useState('');
 
   const brandsByCategory = {
     Ноутбуки: ["Acer", "Lenovo", "Apple", "HP", "Dell", "MSI", "Asus", "Huawei", "Xiaomi"],
     Телевізори: ["Samsung", "LG", "Sony", "Hisense", "TCL", "Philips"],
-    Смартфони: ["Samsung", "Apple", "Xiaomi", "Huawei", "Realme", "Oppo", "OnePlus"],
+    Телефони: ["Samsung", "Apple", "Xiaomi", "Huawei", "Realme", "Oppo", "OnePlus"],
     Мікрохвильовки: ["Samsung", "LG", "Panasonic", "Miele", "Bosch"],
     Станції: ["Anker", "Xiaomi", "Baseus", "UGREEN"],
     Приставки: ["Sony", "Microsoft", "Nintendo"],
@@ -18,29 +19,27 @@ const FilterPanel = ({ onFilterChange, onResetFilters }) => {
     Пароочисники: ["Polti", "Bissell", "Shark", "Kitfort", "Thomas"]
   };
 
-  const handlePriceChange = (e) => {
-    setPrice(e.target.value);
-  };
-
-  const handleBrandChange = (e) => {
-    setBrand(e.target.value);
-  };
+  const handlePriceChange = (e) => setPrice(e.target.value);
+  const handleBrandChange = (e) => setBrand(e.target.value);
 
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
     setCategory(newCategory);
-    setBrand(''); // Скидаємо бренд при зміні категорії
+    setBrand('');
   };
 
+  const handleSearchChange = (e) => setSearch(e.target.value);
+
   const handleApplyFilters = () => {
-    onFilterChange({ price, brand, category }); // Передаємо фільтри до батьківського компонента
+    onFilterChange({ price, brand, category, search });
   };
 
   const handleReset = () => {
     setPrice(10000);
     setBrand('');
     setCategory('');
-    onResetFilters(); // Скидаємо фільтри в батьківському компоненті
+    setSearch('');
+    onResetFilters();
   };
 
   return (
@@ -49,7 +48,7 @@ const FilterPanel = ({ onFilterChange, onResetFilters }) => {
         <option value="">Тип</option>
         <option value="Ноутбуки">Ноутбуки</option>
         <option value="Телевізори">Телевізори</option>
-        <option value="Смартфони">Смартфони</option>
+        <option value="Телефони">Смартфони</option>
         <option value="Мікрохвильовки">Мікрохвильовки</option>
         <option value="Станції">Зарядні станції</option>
         <option value="Приставки">Ігрові приставки</option>
@@ -75,11 +74,23 @@ const FilterPanel = ({ onFilterChange, onResetFilters }) => {
           value={price}
           onChange={handlePriceChange}
         />
-        <span>{price}$</span>
+        <span>{price}грн</span>
       </label>
+
 
       <button onClick={handleApplyFilters}>Застосувати</button>
       <button onClick={handleReset}>Очистити</button>
+      <label className="search-label">
+        <input
+          type="text"
+          value={search}
+          onChange={handleSearchChange}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleApplyFilters();
+          }}
+          placeholder="Пошук за назвою"
+        />
+      </label>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Используем useNavigate вместо useHistory
 
 const Cart = () => {
   const { cart, removeFromCart, removeOneFromCart, updateQuantity } = useCart();
+  const navigate = useNavigate(); // Используем useNavigate для навигации
 
   const handleRemoveOne = (id) => {
     removeOneFromCart(id); // Уменьшаем количество на 1
@@ -21,12 +22,16 @@ const Cart = () => {
 
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0); // Считаем общую сумму
 
+  const handleCheckout = () => {
+    navigate('/checkout'); // Перенаправляем на страницу оформления заказа с помощью navigate
+  };
+
   return (
     <div className="cart">
-      <h2>Корзина</h2>
+      <h2>Кошик</h2>
 
       {cart.length === 0 ? (
-        <p>Ваша корзина пуста.</p>
+        <p>Ваш кошик на жаль порожній.</p>
       ) : (
         <div className="cart-items">
           {cart.map((item) => (
@@ -35,7 +40,7 @@ const Cart = () => {
                 <img src={item.image || '/placeholder.png'} alt={item.name} className="cart-item-image" />
                 <div className="cart-item-details">
                   <h3>{item.name}</h3>
-                  <p>{item.price} ₴</p>
+                  <p>{item.price} грн</p>
                 </div>
               </div>
 
@@ -55,7 +60,7 @@ const Cart = () => {
                 />
                 <button onClick={() => handleChangeQuantity(item.id, item.quantity + 1)}>+</button>
               </div>
-              <button onClick={() => handleRemoveAll(item.id)}>Удалить</button>
+              <button onClick={() => handleRemoveAll(item.id)}>Видалити</button>
             </div>
           ))}
         </div>
@@ -63,13 +68,13 @@ const Cart = () => {
 
       {cart.length > 0 && (
         <div className="cart-total">
-          <h3>Итого: {totalPrice} ₴</h3>
+          <h3>Підсумок: {totalPrice} грн</h3>
         </div>
       )}
 
       <div className="cart-actions">
-        <Link to="/">Продолжить покупки</Link>
-        <button className="pay-button">Оплатить</button>
+        <Link to="/catalog" className='go-buy'>Продовжити покупки</Link>
+        <button onClick={handleCheckout} className="pay-button">Сплатити</button> {/* Навигация на Checkout */}
       </div>
     </div>
   );

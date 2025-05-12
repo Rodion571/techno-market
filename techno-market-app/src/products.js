@@ -264,7 +264,7 @@ const products = [
         id: 30,
         name: "Смартфон Nokia X20",
         price: 17999,
-        image: "https://yellow.ua/media/catalog/product/cache/9/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_8.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRslx3ntRuCCbr5S1Zm73QyUXLv7nFScE6rfQ&s",
         category: "Телефони",
         brand: "Nokia",
         description: "6.67\" IPS LCD, Snapdragon 480, 6 ГБ RAM, 128 ГБ, 64 Мп."
@@ -364,7 +364,7 @@ const products = [
         name: "Зарядна станція Anker PowerHouse 521",
         price: 17999,
         image: "https://krause-ukraine.com/image/cache/catalog/image/cache/catalog/ANKER/521/anker521-500x500.webp",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Anker",
         description: "Power Delivery 60 Вт, ємність 25600 мАч, 2 USB порти."
       },
@@ -373,7 +373,7 @@ const products = [
         name: "Зарядна станція EcoFlow RIVER 256Wh",
         price: 21999,
         image: "https://files.foxtrot.com.ua/PhotoNew/img_0_45862_271_0_1_fgRIre.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "EcoFlow",
         description: "Вихідна потужність 600 Вт, 3 AC порти, 2 USB порти."
       },
@@ -382,7 +382,7 @@ const products = [
         name: "Зарядна станція Goal Zero Yeti 500X",
         price: 34999,
         image: "https://deps.ua/components/com_jshopping/files/img_products/full_47392_1.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Goal Zero",
         description: "500 Вт, ємність 50500 мАч, 2 AC порти, 3 USB порти."
       },
@@ -391,7 +391,7 @@ const products = [
         name: "Зарядна станція Jackery Explorer 240",
         price: 15999,
         image: "https://avic.com.ua/assets/cache/products/256901/zaryadnaya-stantsiya-jackery-explorer-240eu-prod_xl.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Jackery",
         description: "240 Вт, ємність 67000 мАч, 2 USB порти, 1 AC порт."
       },
@@ -400,7 +400,7 @@ const products = [
         name: "Зарядна станція Bluetti EB70",
         price: 24999,
         image: "https://storgom.ua/cache/i/products/81/134721/0001.808x684.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Bluetti",
         description: "700 Вт, ємність 71600 мАч, 4 USB порти, 2 AC порти."
       },
@@ -409,7 +409,7 @@ const products = [
         name: "Зарядна станція Rockpals 500W",
         price: 19999,
         image: "https://m.media-amazon.com/images/I/81pceA9GUvL._AC_UF894,1000_QL80_.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Rockpals",
         description: "500 Вт, ємність 54000 мАч, 3 AC порти, 2 USB порти."
       },
@@ -418,7 +418,7 @@ const products = [
         name: "Зарядна станція Zendure SuperBase Pro 2000",
         price: 49999,
         image: "https://www.bezpeka-shop.com/media/iopt/catalog/product/cache/bd09c1cab6eecf7f144204e047673fc3/3/6/368d22f6b57bb724139eacb5a855a748790cf590d7490b9b766c48dbf9783709.webp",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Zendure",
         description: "2000 Вт, ємність 2000 Втч, 2 AC порти, 3 USB порти."
       },
@@ -427,7 +427,7 @@ const products = [
         name: "Зарядна станція EGO Power+ Nexus 3000",
         price: 34999,
         image: "https://m.media-amazon.com/images/I/717EcNpKiyL._AC_UF1000,1000_QL80_.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "EGO Power+",
         description: "3000 Вт, ємність 10000 мАч, 4 AC порти, 2 USB порти."
       },
@@ -436,7 +436,7 @@ const products = [
         name: "Зарядна станція Suaoki G500",
         price: 21999,
         image: "https://i.ebayimg.com/images/g/Y4IAAOSwoJBf7Sg9/s-l1200.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         brand: "Suaoki",
         description: "500 Вт, ємність 150000 мАч, 3 AC порти, 2 USB порти."
       },
@@ -446,7 +446,7 @@ const products = [
         price: 12999,
         brand: "PAXCESS",
         image: "https://akbcenter.com.ua/image/cache/catalog/images/11807/portativna-zaryadna-stantsiya-pps300-300w-300wh-z-chistoyu-sinusoyidoyu-2-800x800.jpg",
-        category: "Зарядні станції",
+        category: "Станції",
         description: "300 Вт, ємність 30000 мАч, 2 AC порти, 2 USB порти."
       },
       {
@@ -455,7 +455,7 @@ const products = [
         price: 18999,
         brand: "Sony",
         image: "https://sota.store/image/cache/catalog/Sony/playstation-5-01-1024x1024.webp",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "8 ядер, 16 ГБ RAM, SSD 825 ГБ, підтримка 4K, зворотна сумісність з PS4."
       },
       {
@@ -464,7 +464,7 @@ const products = [
         price: 18999,
         brand: "Microsoft",
         image: "https://justbuy.com.ua/wp-content/uploads/2024/11/4646399485-removebg-preview.png",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "8 ядер, 16 ГБ RAM, SSD 1 ТБ, підтримка 4K, сумісність з Xbox One."
       },
       {
@@ -473,7 +473,7 @@ const products = [
         price: 14999,
         brand: "Nintendo",
         image: "https://mygadget.ua/image/cache/catalog/gadgets/consoles/nintendo/222/543/1-max-850.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "7\" OLED екран, 64 ГБ вбудованої пам'яті, підтримка ігор в 1080p."
       },
       {
@@ -482,7 +482,7 @@ const products = [
         price: 12999,
         brand: "Sony",
         image: "https://content2.rozetka.com.ua/goods/images/big/191429380.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "4K стрімінг, 1 ТБ HDD, підтримка HDR."
       },
       {
@@ -491,7 +491,7 @@ const products = [
         price: 11999,
         brand: "Microsoft",
         image: "https://assol.in.ua/image/cache/catalog/assol/26621/igrovaya-pristavka-microsoft-xbox-series-s-512-gb-2-445x445.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "4K відео відтворення, 512 ГБ SSD, підтримка Xbox Game Pass."
       },
       {
@@ -500,7 +500,7 @@ const products = [
         price: 8999,
         brand: "Nintendo",
         image: "https://img.mta.ua/image/cache/data/foto/z162/162090/photos/Nintendo-Switch-Lite-47-Turquoise-01-600x600.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "5.5\" екран, 32 ГБ вбудованої пам'яті, легка і компактна."
       },
       {
@@ -509,7 +509,7 @@ const products = [
         price: 9999,
         brand: "Sony",
         image: "https://hotline.ua/img/tx/110/1101287005.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "500 ГБ HDD, підтримка HD 1080p, компактний дизайн."
       },
       {
@@ -518,7 +518,7 @@ const products = [
         price: 14999,
         brand: "Microsoft",
         image: "https://s.ek.ua/jpg_zoom1/1243777.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "4K Ultra HD, 1 ТБ HDD, покращена продуктивність для ігор."
       },
       {
@@ -527,7 +527,7 @@ const products = [
         price: 10999,
         brand: "Sony",
         image: "https://super.com.ua/upload/iblock/067/0672a7e4335332b0b7c97c0f9e2e6dfa.png",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "Віртуальна реальність, повний комплект з навушниками та камерою."
       },
       {
@@ -536,7 +536,7 @@ const products = [
         price: 4999,
         brand: "SEGA",
         image: "https://up2date.com.ua/image/catalog/nastolki/sega-genesis-mini-1.jpg",
-        category: "Ігрові приставки",
+        category: "Приставки",
         description: "Мініатюрна версія класичної приставки, 40 попередньо встановлених ігор."
       },
       {
@@ -804,7 +804,7 @@ const products = [
         id: 90,
         name: "Духовка Gorenje BO 75 SY2W",
         price: 9999,
-        image: "https://luxshop.waterfilter.in.ua/image/cache/catalog/duhovye-shkafy-folder/9/nenko-ru-files-gorenje-bo75sy2w-750x750.jpg",
+        image: "https://cdn.comfy.ua/media/catalog/product/g/o/gorenje_bo_75_sy2w_1.jpg",
         category: "Духовки",
         brand: "Gorenje",
         description: "Електрична духовка, об'єм 71 літр, система конвекції, клас енергоспоживання A."

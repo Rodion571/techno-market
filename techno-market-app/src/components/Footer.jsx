@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaLinkedin, FaTelegramPlane, FaViber, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 
-
 const Footer = () => {
   return (
     <footer>
@@ -22,8 +21,19 @@ const Footer = () => {
           <FaViber size={30} />
         </a>
       </div>
-      <p>Контакты: info@techno-market.com</p>
-      <p><a href="/privacy-policy">Политика конфиденциальности</a></p>
+      <p>
+        Контакти:{' '}
+        <a href="mailto:info@techno-market.com">info@techno-market.com</a>
+      </p>
+      <p>
+        <a
+          href="https://policies.google.com/privacy?hl=uk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Політика конфіденційності
+        </a>
+      </p>
       <p>&copy; 2025 Techno-Market</p>
     </footer>
   );

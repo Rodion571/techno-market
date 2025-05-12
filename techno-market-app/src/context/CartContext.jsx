@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Контекст для корзины
+// Контекст для корзини
 const CartContext = createContext();
 
-// Провайдер для корзины
+// Провайдер для корзини
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -51,6 +51,11 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // ✅ Очищення кошика повністю
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -59,6 +64,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         removeOneFromCart,
         updateQuantity,
+        clearCart, // <-- додано сюди
       }}
     >
       {children}
@@ -66,5 +72,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Хук для использования контекста
+// Хук для використання контекста
 export const useCart = () => useContext(CartContext);

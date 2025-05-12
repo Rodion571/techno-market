@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         className="product-image"
       />
       <h3 className="product-name">{product.name}</h3>
-      <p className="product-price">{product.price}$</p>
+      <p className="product-price">{product.price}грн</p>
       {product.description && (
         <p className="product-description">{product.description}</p>
       )}

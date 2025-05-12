@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProductCard from './ProductCard';
-import FilterPanel from './FilterPanel';
 import { useCart } from '../context/CartContext';
+import FilterPanel from './FilterPanel';
+import ProductCard from './ProductCard';
 
 const Catalog = ({ products, onAddToCart }) => {
   const { addToCart } = useCart();
@@ -10,20 +10,22 @@ const Catalog = ({ products, onAddToCart }) => {
     price: 10000,
     brand: '',
     category: '',
+    search: '', // Добавлено состояние для поиска
   });
 
   const [appliedFilters, setAppliedFilters] = useState({
     price: 10000,
     brand: '',
     category: '',
+    search: '', // Добавлено состояние для поиска
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 10; // Количество товаров на странице
+  const productsPerPage = 10;
 
   useEffect(() => {
-    setAppliedFilters(filters); // Применяем фильтры при изменении состояния
-    setCurrentPage(1); // Сбрасываем страницу при изменении фильтров
+    setAppliedFilters(filters);
+    setCurrentPage(1);
   }, [filters]);
 
   const handleFilterChange = (newFilters) => {
@@ -35,38 +37,40 @@ const Catalog = ({ products, onAddToCart }) => {
       price: 10000,
       brand: '',
       category: '',
+      search: '', // Сбрасываем поиск
     });
     setAppliedFilters({
       price: 10000,
       brand: '',
       category: '',
+      search: '', // Сбрасываем поиск
     });
-    setCurrentPage(1); // Сбросить страницу при сбросе фильтров
+    setCurrentPage(1);
   };
 
   const handleApplyFilters = () => {
     setAppliedFilters(filters);
-    setCurrentPage(1); // Сбросить страницу при применении фильтров
+    setCurrentPage(1);
   };
 
   // Фильтрация товаров
   const filteredProducts = products.filter((product) => {
-    return (
-      product.price <= appliedFilters.price &&
-      (!appliedFilters.brand || product.brand === appliedFilters.brand) &&
-      (!appliedFilters.category || product.category === appliedFilters.category)
-    );
+    const categoryMatch = !appliedFilters.category || product.category === appliedFilters.category;
+    const brandMatch = !appliedFilters.brand || product.brand === appliedFilters.brand;
+    const priceMatch = product.price <= appliedFilters.price;
+    const searchMatch = !appliedFilters.search || product.name.toLowerCase().includes(appliedFilters.search.toLowerCase());
+
+    return categoryMatch && brandMatch && priceMatch && searchMatch;
   });
 
-  // Определяем индекс первого и последнего товара на текущей странице
+  // Индексы для пагинации
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Обработчики для смены страницы
+  // Пагинация
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Рассчитываем количество страниц
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
@@ -97,7 +101,6 @@ const Catalog = ({ products, onAddToCart }) => {
         )}
       </div>
 
-      {/* Пагинация */}
       {totalPages > 1 && (
         <div className="pagination">
           <button
