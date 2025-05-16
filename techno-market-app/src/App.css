@@ -5,6 +5,24 @@
   padding-bottom: 60px;
   background-color: #f4f4f4;
 }
+.nav-link {
+  display: block;
+  padding: 8px 8px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.nav-link:hover {
+  background-color: #03bc31;
+  color: white;
+}
 
 .App-header {
 
@@ -721,4 +739,62 @@ footer a:hover {
 
 .checkout-actions button:hover {
   background-color: #218838;
+}
+/* Контейнер заказов */
+.my-orders-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* Отступ справа, чтобы не перекрывал сайдбар */
+  margin-right: 200px; /* или ширина вашего сайдбара */
+  background-color: #5d5959;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Каждый заказ */
+.order {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.order:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Заголовки */
+.order h3 {
+  margin-top: 0;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.order h4 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Текст заказов */
+.order p {
+  margin: 6px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Список товаров */
+.order ul {
+  list-style: disc inside;
+  padding-left: 0;
+  margin: 10px 0 0 0;
+}
+
+.order ul li {
+  margin-bottom: 5px;
+  color: #444;
+  font-size: 14px;
 }

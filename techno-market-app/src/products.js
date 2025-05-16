@@ -327,7 +327,7 @@ const products = [
         id: 37,
         name: "Мікрохвильовка Samsung MG23K3575AS",
         price: 5999,
-        image: "https://assol.in.ua/image/cache/catalog/brain/2/9/U0581229_2big-445x445.jpg",
+        image: "https://i.citrus.world/imgcache/size_800/uploads/shop/5/0/508c1b1e4784f32773a8e95780289d3b.jpg",
         category: "Мікрохвильовки",
         brand: "Samsung",
         description: "23 л, потужність 800 Вт, гриль, авторозморожування."

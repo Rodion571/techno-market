@@ -6,8 +6,10 @@ import Cart from './pages/Cart';
 import Contact from './pages/Contact';
 import Catalog from './components/Catalog';
 import Sidebar from './components/Sidebar';
-import Checkout from './pages/Checkout'; // Импортируем компонент Checkout
+import Checkout from './pages/Checkout';
+import MyOrders from './pages/MyOrders'; // <-- добавь импорт компонента
 import { CartProvider } from './context/CartContext';
+import { OrderProvider } from './context/OrderContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import products from './products';
 
@@ -17,24 +19,27 @@ function App() {
   };
 
   return (
-    <CartProvider>
-      <Router>
-        <div className="app-container">
-          <Sidebar />
-          <div className="main-content">
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home products={products} onAddToCart={onAddToCart} />} />
-              <Route path="/catalog" element={<Catalog products={products} onAddToCart={onAddToCart} />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/checkout" element={<Checkout />} /> {/* Добавляем маршрут для Checkout */}
-            </Routes>
-            <Footer />
+    <OrderProvider>
+      <CartProvider>
+        <Router>
+          <div className="app-container">
+            <Sidebar />
+            <div className="main-content">
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home products={products} onAddToCart={onAddToCart} />} />
+                <Route path="/catalog" element={<Catalog products={products} onAddToCart={onAddToCart} />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/my-orders" element={<MyOrders />} /> {/* <-- добавлен маршрут */}
+              </Routes>
+              <Footer />
+            </div>
           </div>
-        </div>
-      </Router>
-    </CartProvider>
+        </Router>
+      </CartProvider>
+    </OrderProvider>
   );
 }
 

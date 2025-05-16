@@ -1,29 +1,29 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { Link, useNavigate } from 'react-router-dom'; // Используем useNavigate вместо useHistory
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, removeFromCart, removeOneFromCart, updateQuantity } = useCart();
-  const navigate = useNavigate(); // Используем useNavigate для навигации
+  const navigate = useNavigate();
 
   const handleRemoveOne = (id) => {
-    removeOneFromCart(id); // Уменьшаем количество на 1
+    removeOneFromCart(id);
   };
 
   const handleRemoveAll = (id) => {
-    removeFromCart(id); // Удаляем весь товар
+    removeFromCart(id);
   };
 
   const handleChangeQuantity = (id, quantity) => {
     if (quantity > 0) {
-      updateQuantity(id, quantity); // Обновляем количество товара
+      updateQuantity(id, quantity);
     }
   };
 
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0); // Считаем общую сумму
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleCheckout = () => {
-    navigate('/checkout'); // Перенаправляем на страницу оформления заказа с помощью navigate
+    navigate('/checkout');
   };
 
   return (
@@ -48,8 +48,13 @@ const Cart = () => {
                 <p>{item.description || "Описание товара не доступно."}</p>
               </div>
 
-              <div className="quantity">
-                <button onClick={() => handleRemoveOne(item.id)}>-</button>
+              <div className="quantity-counter">
+                <button
+                  className="quantity-btn"
+                  onClick={() => handleRemoveOne(item.id)}
+                >
+                  -
+                </button>
                 <input
                   type="number"
                   value={item.quantity}
@@ -57,10 +62,19 @@ const Cart = () => {
                     handleChangeQuantity(item.id, Number(e.target.value))
                   }
                   min="1"
+                  className="quantity-input"
                 />
-                <button onClick={() => handleChangeQuantity(item.id, item.quantity + 1)}>+</button>
+                <button
+                  className="quantity-btn"
+                  onClick={() => handleChangeQuantity(item.id, item.quantity + 1)}
+                >
+                  +
+                </button>
               </div>
-              <button onClick={() => handleRemoveAll(item.id)}>Видалити</button>
+
+              <button className="remove-btn" onClick={() => handleRemoveAll(item.id)}>
+                Видалити
+              </button>
             </div>
           ))}
         </div>
@@ -73,8 +87,12 @@ const Cart = () => {
       )}
 
       <div className="cart-actions">
-        <Link to="/catalog" className='go-buy'>Продовжити покупки</Link>
-        <button onClick={handleCheckout} className="pay-button">Сплатити</button> {/* Навигация на Checkout */}
+        <Link to="/catalog" className="go-buy">
+          Продовжити покупки
+        </Link>
+        <button onClick={handleCheckout} className="pay-button">
+          Сплатити
+        </button>
       </div>
     </div>
   );
