@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -6,50 +6,56 @@ const Sidebar = () => {
   const [user, setUser] = useState({ name: '', email: '' }); 
   const [isRegistered, setIsRegistered] = useState(false); 
 
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedName && storedEmail) {
+      setUser({ name: storedName, email: storedEmail });
+      setIsAuthenticated(true);
+      setIsRegistered(true);
+    }
+  }, []);
+
   const isValidEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
   };
 
   const handleLoginClick = () => {
-    const name = prompt('Введіть ваше ім\'я:');
+    const name = prompt("Введіть ваше ім'я:");
     if (name) {
       const email = prompt('Введіть ваш email:');
-      if (email) {
-        if (isValidEmail(email)) {
-          setUser({ name, email });
-          setIsAuthenticated(true);
-          setIsRegistered(false);
-          alert(`Вітаємо, ${name}! Ви успішно увійшли.`);
-        } else {
-          alert('Будь ласка, введіть правильний email!');
-        }
+      if (email && isValidEmail(email)) {
+        setUser({ name, email });
+        setIsAuthenticated(true);
+        setIsRegistered(false);
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+        alert(`Вітаємо, ${name}! Ви успішно увійшли.`);
       } else {
-        alert('Email не введений!');
+        alert('Будь ласка, введіть правильний email!');
       }
     } else {
-      alert('Ім\'я не введене!');
+      alert("Ім'я не введене!");
     }
   };
 
   const handleRegisterClick = () => {
-    const name = prompt('Введіть ваше ім\'я для реєстрації:');
+    const name = prompt("Введіть ваше ім'я для реєстрації:");
     if (name) {
       const email = prompt('Введіть ваш email для реєстрації:');
-      if (email) {
-        if (isValidEmail(email)) {
-          setUser({ name, email });
-          setIsAuthenticated(true);
-          setIsRegistered(true);
-          alert(`Реєстрація успішна, ${name}!`);
-        } else {
-          alert('Будь ласка, введіть правильний email!');
-        }
+      if (email && isValidEmail(email)) {
+        setUser({ name, email });
+        setIsAuthenticated(true);
+        setIsRegistered(true);
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+        alert(`Реєстрація успішна, ${name}!`);
       } else {
-        alert('Email не введений!');
+        alert('Будь ласка, введіть правильний email!');
       }
     } else {
-      alert('Ім\'я не введене!');
+      alert("Ім'я не введене!");
     }
   };
 
@@ -57,6 +63,8 @@ const Sidebar = () => {
     setIsAuthenticated(false);
     setUser({ name: '', email: '' });
     setIsRegistered(false);
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
   };
 
   return (

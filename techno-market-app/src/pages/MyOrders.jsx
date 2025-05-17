@@ -16,9 +16,9 @@ const MyOrders = () => {
           <h3>Замовлення #{idx + 1} від {new Date(order.createdAt).toLocaleString()}</h3>
           <p>Ім'я: {order.customerName}</p>
           <p>Email: {order.customerEmail}</p>
+          <p>Мобільний телефон: {order.customerPhone || 'не вказаний'}</p>
           <p>Адреса: {order.deliveryAddress}</p>
           <p>Оплата: {order.paymentMethod}</p>
-          <p>Час доставки: {order.deliveryTime}</p>
           <p>Загальна сума: {order.total} грн</p>
           <p>Промокод: {order.promoCode || 'відсутній'}</p>
           <h4>Товари:</h4>

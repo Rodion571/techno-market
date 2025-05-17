@@ -9,14 +9,16 @@ const Checkout = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [mobilePhone, setMobilePhone] = useState('');
   const [address, setAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('applePay');
-  const [deliveryTime, setDeliveryTime] = useState('standard');
+  const [paymentMethod, setPaymentMethod] = useState('monoCard');
+  const [deliveryMethod, setDeliveryMethod] = useState('pickup');
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentFee, setPaymentFee] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [promoMessage, setPromoMessage] = useState('');
+  const [paymentDeliveryError, setPaymentDeliveryError] = useState('');
 
   const navigate = useNavigate();
 
@@ -39,27 +41,41 @@ const Checkout = () => {
     const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const discountedTotal = cartTotal - discount;
 
-    let deliveryCost = 50;
-    if (deliveryTime === 'express') deliveryCost = 100;
-    else if (deliveryTime === 'sameDay') deliveryCost = 150;
+    // Визначення вартості доставки
+    let deliveryCost = 0;
+    if (deliveryMethod === 'pickup') deliveryCost = 0;
+    else if (deliveryMethod === 'novaPoshta') deliveryCost = 70;
+    else if (deliveryMethod === 'ukrPost') deliveryCost = 60;
+    else if (deliveryMethod === 'expressCompany') deliveryCost = 150;
 
+    // Розрахунок комісії за оплату
     let fee = 0;
-    if (paymentMethod === 'card') {
-      fee = discountedTotal * 0.05;
+    if (paymentMethod === 'monoCard' || paymentMethod === 'privatCard') {
+      fee = discountedTotal * 0.03; // 3% комісія для карт Приват та Монобанк
     } else if (paymentMethod === 'applePay' || paymentMethod === 'googlePay') {
-      fee = discountedTotal * 0.02;
+      fee = discountedTotal * 0.02; // 2% для ApplePay та GooglePay
     } else if (paymentMethod === 'cash') {
-      fee = 250;
+      // Готівка доступна тільки при самовивозі, комісія 0
+      fee = 0;
     }
 
     setPaymentFee(fee.toFixed(2));
-    const finalPrice = discountedTotal + deliveryCost + parseFloat(fee);
+    const finalPrice = discountedTotal + deliveryCost + fee;
     setTotalPrice(finalPrice.toFixed(2));
-  }, [cart, discount, paymentMethod, deliveryTime]);
+  }, [cart, discount, paymentMethod, deliveryMethod]);
 
   useEffect(() => {
     calculateTotal();
-  }, [cart, discount, paymentMethod, deliveryTime, calculateTotal]);
+  }, [cart, discount, paymentMethod, deliveryMethod, calculateTotal]);
+
+  // Проверка на совместимость оплаты и доставки
+  useEffect(() => {
+    if (paymentMethod === 'cash' && deliveryMethod !== 'pickup') {
+      setPaymentDeliveryError('Оплата готівкою можлива лише при самовивозі!');
+    } else {
+      setPaymentDeliveryError('');
+    }
+  }, [paymentMethod, deliveryMethod]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,27 +86,41 @@ const Checkout = () => {
       return;
     }
 
-    if (name && email && address) {
-      const newOrder = {
-        customerName: name,
-        customerEmail: email,
-        deliveryAddress: address,
-        paymentMethod,
-        deliveryTime,
-        products: cart,
-        total: parseFloat(totalPrice),
-        discount: parseFloat(discount),
-        promoCode: promoCode || null,
-        createdAt: new Date().toISOString(),
-      };
-
-      addOrder(newOrder);
-      clearCart();
-      alert(`Дякуємо за покупку, ${name}! Ваше замовлення оформлено.`);
-      navigate('/');
-    } else {
-      alert('Будь ласка, заповніть всі поля!');
+    // Валідація мобільного телефону (простий патерн, можна ускладнити)
+    const phoneRegex = /^\+?\d{10,15}$/;
+    if (!mobilePhone || !phoneRegex.test(mobilePhone)) {
+      alert('Будь ласка, введіть коректний мобільний телефон (цифри, 10-15 символів, можна починати з +)');
+      return;
     }
+
+    if (!name || !email || (deliveryMethod !== 'pickup' && !address)) {
+      alert('Будь ласка, заповніть всі необхідні поля!');
+      return;
+    }
+
+    if (paymentDeliveryError) {
+      alert(paymentDeliveryError);
+      return;
+    }
+
+    const newOrder = {
+      customerName: name,
+      customerEmail: email,
+      customerPhone: mobilePhone,
+      deliveryAddress: deliveryMethod === 'pickup' ? 'Самовивіз зі складу SwiftCargo' : address,
+      paymentMethod,
+      deliveryMethod,
+      products: cart,
+      total: parseFloat(totalPrice),
+      discount: parseFloat(discount),
+      promoCode: promoCode || null,
+      createdAt: new Date().toISOString(),
+    };
+
+    addOrder(newOrder);
+    clearCart();
+    alert(`Дякуємо за покупку, ${name}! Ваше замовлення оформлено.`);
+    navigate('/');
   };
 
   return (
@@ -145,43 +175,60 @@ const Checkout = () => {
         </div>
 
         <div className="checkout-field">
-          <label htmlFor="address">Адреса доставки:</label>
+          <label htmlFor="mobilePhone">Мобільний телефон:</label>
           <input
-            type="text"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            type="tel"
+            id="mobilePhone"
+            value={mobilePhone}
+            onChange={(e) => setMobilePhone(e.target.value)}
+            placeholder="+380XXXXXXXXX"
             required
           />
         </div>
 
-        <div className="checkout-field">
-          <label htmlFor="payment">Спосіб оплати:</label>
+        {deliveryMethod !== 'pickup' && (
+          <div className="checkout-field">
+            <label htmlFor="address">Адреса доставки:</label>
+            <input
+              type="text"
+              id="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required={deliveryMethod !== 'pickup'}
+            />
+          </div>
+        )}
+
+        <div className={`checkout-field ${paymentDeliveryError ? 'error' : ''}`}>
+          <label htmlFor="deliveryMethod">Спосіб доставки:</label>
           <select
-            id="payment"
+            id="deliveryMethod"
+            value={deliveryMethod}
+            onChange={(e) => setDeliveryMethod(e.target.value)}
+            required
+          >
+            <option value="pickup">Самовивіз (безкоштовно)</option>
+            <option value="novaPoshta">Нова пошта (70 грн)</option>
+            <option value="ukrPost">Укрпошта (60 грн)</option>
+            <option value="expressCompany">Експрес (SwiftCargo, 150 грн)</option>
+          </select>
+        </div>
+
+        <div className={`checkout-field ${paymentDeliveryError ? 'error' : ''}`}>
+          <label htmlFor="paymentMethod">Спосіб оплати:</label>
+          <select
+            id="paymentMethod"
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}
             required
           >
+            <option value="monoCard">Оплата частинами від MonoBank (3%)</option>
+            <option value="privatCard">Оплата частинами від ПриватБанк (3%)</option>
             <option value="applePay">Apple Pay (2%)</option>
             <option value="googlePay">Google Pay (2%)</option>
-            <option value="card">Карта (ін. банк – 5%)</option>
-            <option value="cash">Готівка (250 грн)</option>
+            <option value="cash">Готівка (тільки самовивіз)</option>
           </select>
-        </div>
-
-        <div className="checkout-field">
-          <label htmlFor="deliveryTime">Час доставки:</label>
-          <select
-            id="deliveryTime"
-            value={deliveryTime}
-            onChange={(e) => setDeliveryTime(e.target.value)}
-            required
-          >
-            <option value="standard">Стандартний (3-5 днів)</option>
-            <option value="express">Експрес (1-2 дні)</option>
-            <option value="sameDay">Того ж дня</option>
-          </select>
+          {paymentDeliveryError && <p className="error-message">{paymentDeliveryError}</p>}
         </div>
 
         <div className="checkout-summary">
@@ -189,13 +236,13 @@ const Checkout = () => {
           {discount > 0 && (
             <p><span className="label">Знижка:</span> -{discount.toFixed(2)} грн</p>
           )}
-          <p><span className="label">Доставка:</span> {deliveryTime === 'standard' ? '50' : deliveryTime === 'express' ? '100' : '150'} грн</p>
+          <p><span className="label">Доставка:</span> {deliveryMethod === 'pickup' ? '0' : deliveryMethod === 'novaPoshta' ? '70' : deliveryMethod === 'ukrPost' ? '60' : '150'} грн</p>
           <p>
             <span className="label">Комісія за оплату:</span> {paymentFee} грн{' '}
-            {paymentMethod === 'card' && <em>(картка іншого банку — 5%)</em>}
-            {paymentMethod === 'applePay' && <em>(Apple Pay — 2%)</em>}
-            {paymentMethod === 'googlePay' && <em>(Google Pay — 2%)</em>}
-            {paymentMethod === 'cash' && <em>(готівка — 250 грн фіксовано)</em>}
+            {(paymentMethod === 'monoCard' || paymentMethod === 'privatCard') && <em>(3%)</em>}
+            {paymentMethod === 'applePay' && <em>(2%)</em>}
+            {paymentMethod === 'googlePay' && <em>(2%)</em>}
+            {paymentMethod === 'cash' && <em>(готівка, тільки при самовивозі)</em>}
           </p>
           <p className="total">
             <span className="label">Всього до сплати:</span> {totalPrice} грн
@@ -203,7 +250,7 @@ const Checkout = () => {
         </div>
 
         <div className="checkout-actions">
-          <button type="submit">Підтвердити замовлення</button>
+          <button type="submit" disabled={Boolean(paymentDeliveryError)}>Підтвердити замовлення</button>
         </div>
       </form>
     </div>

@@ -798,3 +798,12 @@ footer a:hover {
   color: #444;
   font-size: 14px;
 }
+.checkout-field.error select {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
