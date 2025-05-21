@@ -5,7 +5,12 @@ const MyOrders = () => {
   const { orders } = useOrder();
 
   if (!orders || orders.length === 0) {
-    return <p>У вас еще нет заказов.</p>;
+        return (
+      <p style={{ textAlign: 'center' }}>
+        <span>У вас ще немає замовлень.</span>
+      </p>
+    );
+
   }
 
   return (

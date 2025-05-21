@@ -11,7 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleMoreClick = () => {
-    navigate('/catalog'); // Переходим на каталог без параметра категории в URL
+    navigate('/catalog'); 
   };
 
   return (

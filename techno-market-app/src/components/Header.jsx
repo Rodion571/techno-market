@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Импортируем Link для перехода
+import { Link } from 'react-router-dom'; 
 import { useCart } from '../context/CartContext';
 
 const Header = () => {

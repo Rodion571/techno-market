@@ -15,10 +15,34 @@ const Contact = () => {
       <h1>Контакти</h1>
 
       <div className="contact-info">
-        <p><strong>Адреса:</strong> м. Київ, вул. Технопаркова, 12</p>
-        <p><strong>Телефон:</strong> +38 (050) 123-45-67</p>
-        <p><strong>Email:</strong> info@techno-market.ua</p>
-        <p><strong>Графік роботи:</strong> Пн-Пт 09:00 – 18:00</p>
+        <p>
+          <strong>Адреса:</strong>{' '}
+          <a
+            href="https://www.google.com/maps?q=м.+Київ,+вул.+Технопаркова,+12"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            м. Київ, вул. Технопаркова, 12
+          </a>
+        </p>
+        <p>
+          <strong>Телефон:</strong>{' '}
+          <a href="tel:+380501234567">+38 (050) 123-45-67</a>
+        </p>
+        <p>
+          <strong>Email:</strong>{' '}
+          <a href="mailto:info@techno-market.ua">info@techno-market.ua</a>
+        </p>
+        <p>
+          <strong>Графік роботи:</strong>{' '}
+          <a
+            href="https://calendar.google.com/calendar/u/0/r"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Пн-Пт 09:00 – 18:00
+          </a>
+        </p>
       </div>
 
       <form className="contact-form" onSubmit={handleSubmit}>

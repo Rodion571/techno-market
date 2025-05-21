@@ -7,7 +7,7 @@ import Contact from './pages/Contact';
 import Catalog from './components/Catalog';
 import Sidebar from './components/Sidebar';
 import Checkout from './pages/Checkout';
-import MyOrders from './pages/MyOrders'; // <-- добавь импорт компонента
+import MyOrders from './pages/MyOrders';
 import { CartProvider } from './context/CartContext';
 import { OrderProvider } from './context/OrderContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

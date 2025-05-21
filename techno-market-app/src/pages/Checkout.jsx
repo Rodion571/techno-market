@@ -139,7 +139,7 @@ const Checkout = () => {
       )}
 
       <div className="promo-code">
-        <label htmlFor="promo">Промокод:</label>
+        <label htmlFor="promo">Промокод:🚩</label>
         <input
           type="text"
           id="promo"
@@ -153,7 +153,7 @@ const Checkout = () => {
       <h2>Оформлення замовлення</h2>
       <form onSubmit={handleSubmit}>
         <div className="checkout-field">
-          <label htmlFor="name">Ім'я:</label>
+          <label htmlFor="name">Ім'я:🪪</label>
           <input
             type="text"
             id="name"
@@ -164,7 +164,7 @@ const Checkout = () => {
         </div>
 
         <div className="checkout-field">
-          <label htmlFor="email">Електронна пошта:</label>
+          <label htmlFor="email">Електронна пошта:💻</label>
           <input
             type="email"
             id="email"
@@ -175,7 +175,7 @@ const Checkout = () => {
         </div>
 
         <div className="checkout-field">
-          <label htmlFor="mobilePhone">Мобільний телефон:</label>
+          <label htmlFor="mobilePhone">Мобільний телефон:📲</label>
           <input
             type="tel"
             id="mobilePhone"
@@ -188,7 +188,7 @@ const Checkout = () => {
 
         {deliveryMethod !== 'pickup' && (
           <div className="checkout-field">
-            <label htmlFor="address">Адреса доставки:</label>
+            <label htmlFor="address">Адреса доставки:🏘️</label>
             <input
               type="text"
               id="address"
@@ -200,7 +200,7 @@ const Checkout = () => {
         )}
 
         <div className={`checkout-field ${paymentDeliveryError ? 'error' : ''}`}>
-          <label htmlFor="deliveryMethod">Спосіб доставки:</label>
+          <label htmlFor="deliveryMethod">Спосіб доставки:🛹</label>
           <select
             id="deliveryMethod"
             value={deliveryMethod}
@@ -215,7 +215,7 @@ const Checkout = () => {
         </div>
 
         <div className={`checkout-field ${paymentDeliveryError ? 'error' : ''}`}>
-          <label htmlFor="paymentMethod">Спосіб оплати:</label>
+          <label htmlFor="paymentMethod">Спосіб оплати:🪙</label>
           <select
             id="paymentMethod"
             value={paymentMethod}
@@ -245,7 +245,7 @@ const Checkout = () => {
             {paymentMethod === 'cash' && <em>(готівка, тільки при самовивозі)</em>}
           </p>
           <p className="total">
-            <span className="label">Всього до сплати:</span> {totalPrice} грн
+            <span className="label">Всього до сплати:</span> {totalPrice} 💵грн
           </p>
         </div>
 

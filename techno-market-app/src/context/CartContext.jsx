@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Контекст для корзини
+// Context for the cart
 const CartContext = createContext();
 
-// Провайдер для корзини
+// Provider for the cart
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Добавление товара в корзину
+  // Add a product to the cart
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -24,12 +24,12 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Полное удаление товара
+  // Completely remove a product from the cart
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // Удаление одного экземпляра товара
+  // Remove one unit of a product
   const removeOneFromCart = (id) => {
     setCart((prevCart) =>
       prevCart
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Обновление количества вручную
+  // Update product quantity manually
   const updateQuantity = (id, quantity) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Очищення кошика повністю
+  // ✅ Clear the entire cart
   const clearCart = () => {
     setCart([]);
   };
@@ -64,7 +64,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         removeOneFromCart,
         updateQuantity,
-        clearCart, // <-- додано сюди
+        clearCart,
       }}
     >
       {children}
@@ -72,5 +72,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Хук для використання контекста
+// Hook to use the cart context
 export const useCart = () => useContext(CartContext);

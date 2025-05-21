@@ -10,14 +10,14 @@ const Catalog = ({ products, onAddToCart }) => {
     price: 10000,
     brand: '',
     category: '',
-    search: '', // Добавлено состояние для поиска
+    search: '', // Added search state
   });
 
   const [appliedFilters, setAppliedFilters] = useState({
     price: 10000,
     brand: '',
     category: '',
-    search: '', // Добавлено состояние для поиска
+    search: '', // Added search state
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,13 +37,13 @@ const Catalog = ({ products, onAddToCart }) => {
       price: 10000,
       brand: '',
       category: '',
-      search: '', // Сбрасываем поиск
+      search: '', // Reset search
     });
     setAppliedFilters({
       price: 10000,
       brand: '',
       category: '',
-      search: '', // Сбрасываем поиск
+      search: '', // Reset search
     });
     setCurrentPage(1);
   };
@@ -53,7 +53,7 @@ const Catalog = ({ products, onAddToCart }) => {
     setCurrentPage(1);
   };
 
-  // Фильтрация товаров
+  // Filtering products
   const filteredProducts = products.filter((product) => {
     const categoryMatch = !appliedFilters.category || product.category === appliedFilters.category;
     const brandMatch = !appliedFilters.brand || product.brand === appliedFilters.brand;
@@ -63,12 +63,12 @@ const Catalog = ({ products, onAddToCart }) => {
     return categoryMatch && brandMatch && priceMatch && searchMatch;
   });
 
-  // Индексы для пагинации
+  // Pagination indexes
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Пагинация
+  // Pagination
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
