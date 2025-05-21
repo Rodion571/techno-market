@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); 
-  const [user, setUser] = useState({ name: '', email: '' }); 
-  const [isRegistered, setIsRegistered] = useState(false); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState({ name: '', email: '' });
+  const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     const storedName = localStorage.getItem('userName');
@@ -19,6 +19,13 @@ const Sidebar = () => {
   const isValidEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
+  };
+
+  const maskEmail = (email) => {
+    const [userPart, domain] = email.split('@');
+    if (!userPart || !domain) return '';
+    if (userPart.length <= 2) return '***@' + domain;
+    return userPart.slice(0, 2) + '****@' + domain;
   };
 
   const handleLoginClick = () => {
@@ -80,9 +87,12 @@ const Sidebar = () => {
         </div>
         <div className="user-details">
           <p>{isAuthenticated ? `Привіт, ${user.name}` : 'Гість'}</p>
-          {isAuthenticated && isRegistered && <p>{user.email}</p>}
+          {isAuthenticated && isRegistered && (
+          <p className="masked-email">
+            {maskEmail(user.email)}
+          </p>
+          )}
         </div>
-
         {isAuthenticated ? (
           <div>
             <p>Особистий кабінет</p>

@@ -807,3 +807,11 @@ footer a:hover {
   font-size: 0.9em;
   margin-top: 4px;
 }
+.masked-email {
+  margin: 0;
+  word-break: break-word;
+  white-space: normal;
+  font-size: 0.9em;
+  color: #555;
+  max-width: 100px;
+}
