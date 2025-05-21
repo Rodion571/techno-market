@@ -354,7 +354,7 @@ const products = [
         id: 40,
         name: "Мікрохвильовка Electrolux EMS21400S",
         price: 4999,
-        image: "https://prof.lv/media/catalog/product/cache/bb2e4f278882af2cb0666a1a14d552d6/f/0/f03067507de6a7a89862502a11bfc197c2d7b4da08cab960a71f03c57a582eab.jpeg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSees8mP0bnOWbQ4CHK5mjFgNhoueG_Rp90zw&s",
         category: "Мікрохвильовки",
         brand: "Electrolux",
         description: "21 л, потужність 800 Вт, гриль, 5 рівнів потужності."
