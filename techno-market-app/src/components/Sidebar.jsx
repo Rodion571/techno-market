@@ -17,7 +17,7 @@ const Sidebar = () => {
   }, []);
 
   const isValidEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
 
@@ -88,9 +88,9 @@ const Sidebar = () => {
         <div className="user-details">
           <p>{isAuthenticated ? `Привіт, ${user.name}` : 'Гість'}</p>
           {isAuthenticated && isRegistered && (
-          <p className="masked-email">
-            {maskEmail(user.email)}
-          </p>
+            <p className="masked-email">
+              {maskEmail(user.email)}
+            </p>
           )}
         </div>
         {isAuthenticated ? (

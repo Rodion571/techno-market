@@ -8,6 +8,7 @@ import Catalog from './components/Catalog';
 import Sidebar from './components/Sidebar';
 import Checkout from './pages/Checkout';
 import MyOrders from './pages/MyOrders';
+import NotFound from './pages/NotFound'; 
 import { CartProvider } from './context/CartContext';
 import { OrderProvider } from './context/OrderContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -32,7 +33,8 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/my-orders" element={<MyOrders />} /> {/* <-- добавлен маршрут */}
+                <Route path="/my-orders" element={<MyOrders />} />
+                <Route path="*" element={<NotFound />} /> {/* Обробка неіснуючих маршрутів */}
               </Routes>
               <Footer />
             </div>
